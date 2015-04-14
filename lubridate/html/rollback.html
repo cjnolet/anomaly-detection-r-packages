@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Roll back date to last day of previous month</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for rollback {lubridate}"><tr><td>rollback {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Roll back date to last day of previous month</h2>
+
+<h3>Description</h3>
+
+<p>rollback changes a date to the last day of the previous
+month. The new date retains the same hour, minute, and
+second information.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  rollback(dates)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>dates</code></td>
+<td>
+<p>A POSIXct, POSIXlt or Date class object.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A date-time object of class POSIXlt, POSIXct or Date,
+whose day has been adjusted to the last day of the
+previous month. date &lt;- ymd(&quot;2010-03-03&quot;) # &quot;2010-03-03
+UTC&quot; rollback(date) # &quot;2010-02-28 UTC&quot;
+</p>
+<p>dates &lt;- date + months(0:2) &quot;2010-03-03 UTC&quot; &quot;2010-04-03
+UTC&quot; &quot;2010-05-03 UTC&quot; rollback(dates) &quot;2010-02-28 UTC&quot;
+&quot;2010-03-31 UTC&quot; &quot;2010-04-30 UTC&quot;
+</p>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

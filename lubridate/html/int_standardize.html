@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Ensures all intervals in an interval object are positive</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for int_standardize {lubridate}"><tr><td>int_standardize {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Ensures all intervals in an interval object are positive</h2>
+
+<h3>Description</h3>
+
+<p>If an interval is not positive, int_standardize flips it
+so that it retains its endpoints but becomes positive.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  int_standardize(int)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>int</code></td>
+<td>
+<p>an Interval object</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre>
+int &lt;- new_interval(ymd("2002-01-01"), ymd("2001-01-01"))
+# 2002-01-01 UTC--2001-01-01 UTC
+int_standardize(int)
+# 2001-01-01 UTC--2002-01-01 UTC
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

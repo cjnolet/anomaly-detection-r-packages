@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Source all files in a package.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for source_package {roxygen2}"><tr><td>source_package {roxygen2}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Source all files in a package.</h2>
+
+<h3>Description</h3>
+
+<p>This is a simple attempt to load code in a package used by
+<code><a href="roxygenize.html">roxygenize</a></code>. It will work with simple packages, but fail if
+there are compiled files, data files, etc. In that case, it's better to
+use <code><a href="../../devtools/html/document.html">document</a>()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+source_package(path)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>path</code></td>
+<td>
+<p>Path to a package.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An environment, into which all R files in the directory were
+sourced.
+</p>
+
+<hr><div align="center">[Package <em>roxygen2</em> version 4.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

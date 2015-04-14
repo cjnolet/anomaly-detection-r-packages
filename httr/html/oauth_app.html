@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Create an OAuth application.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for oauth_app {httr}"><tr><td>oauth_app {httr}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Create an OAuth application.</h2>
+
+<h3>Description</h3>
+
+<p>The OAuth framework doesn't match perfectly to use from R. Each user of the
+package for a particular OAuth enabled site must create their own
+application. See the demos for instructions on how to do this for
+linkedin, twitter, vimeo, facebook, github and google.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+oauth_app(appname, key, secret = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>appname</code></td>
+<td>
+<p>name of the application.  This is not used for OAuth, but
+is used to make it easier to identify different applications and
+provide a consistent way of storing secrets in environment variables.</p>
+</td></tr>
+<tr valign="top"><td><code>key</code></td>
+<td>
+<p>consumer key (equivalent to a user name)</p>
+</td></tr>
+<tr valign="top"><td><code>secret</code></td>
+<td>
+<p>consumer secret.  This is equivalent to a password and
+should not be stored in publicly visible code.  As a convenient shortcut,
+if <code>secret</code> is missing, we'll look in the environment variable
+<code>APPNAME_CONSUMER_SECRET</code>. Use <code>NULL</code> to not store a secret:
+this is useful if you're relying on cached OAuth tokens.</p>
+</td></tr>
+</table>
+
+
+<h3>See Also</h3>
+
+<p>Other OAuth: <code><a href="oauth1.0_token.html">oauth1.0_token</a></code>;
+<code><a href="oauth2.0_token.html">oauth2.0_token</a></code>;
+<code><a href="oauth_endpoint.html">oauth_endpoint</a></code>;
+<code><a href="oauth_service_token.html">oauth_service_token</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+# These work on my computer because I have the right envvars set up
+linkedin_app &lt;- oauth_app("linkedin", key = "outmkw3859gy")
+github_app &lt;- oauth_app("github", "56b637a5baffac62cad9")
+
+## End(Not run)
+
+# If you're relying on caching, supply an explicit NULL to
+# suppress the warning message
+oauth_app("my_app", "mykey")
+oauth_app("my_app", "mykey", NULL)
+</pre>
+
+<hr><div align="center">[Package <em>httr</em> version 0.6.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

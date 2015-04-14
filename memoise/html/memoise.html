@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Memoise a function.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for memoise {memoise}"><tr><td>memoise {memoise}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Memoise a function.</h2>
+
+<h3>Description</h3>
+
+<p><code>mf &lt;- memoise(f)</code> creates <code>mf</code>, a memoised copy of
+<code>f</code>. A memoised copy is basically a
+lazier version of the same function: it saves the answers of
+new invocations, and re-uses the answers of old ones. Under the right
+circumstances, this can provide a very nice speedup indeed.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+memoise(f)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>f</code></td>
+<td>
+<p>Function of which to create a memoised copy.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>There are two main ways to use the <code>memoise</code> function. Say that
+you wish to memoise <code>glm</code>, which is in the <code>stats</code>
+package; then you could use <br>
+<code>  mem_glm &lt;- memoise(glm)</code>, or you could use<br>
+<code>  glm &lt;- memoise(stats::glm)</code>. <br>
+The first form has the advantage that you still have easy access to
+both the memoised and the original function. The latter is especially
+useful to bring the benefits of memoisation to an existing block
+of R code.
+</p>
+<p>Two example situations where <code>memoise</code> could be of use:
+</p>
+
+<ul>
+<li><p> You're evaluating a function repeatedly over the rows (or
+larger chunks) of a dataset, and expect to regularly get the same
+input.
+</p>
+</li>
+<li><p> You're debugging or developing something, which involves
+a lot of re-running the code.  If there are a few expensive calls
+in there, memoising them can make life a lot more pleasant.
+If the code is in a script file that you're <code>source()</code>ing,
+take care that you don't just put <br>
+<code>  glm &lt;- memoise(stats::glm)</code> <br>
+at the top of your file: that would reinitialise the memoised
+function every time the file was sourced. Wrap it in <br>
+<code>  if (!is.memoised(glm)) </code>, or do the memoisation call
+once at the R prompt, or put it somewhere else where it won't get
+repeated.
+</p>
+</li></ul>
+
+
+
+<h3>See Also</h3>
+
+<p><code><a href="forget.html">forget</a></code>, <code><a href="is.memoised.html">is.memoised</a></code>,
+<a href="http://en.wikipedia.org/wiki/Memoization">http://en.wikipedia.org/wiki/Memoization</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# a() is evaluated anew each time. memA() is only re-evaluated
+# when you call it with a new set of parameters.
+a &lt;- function(n) { runif(n) }
+memA &lt;- memoise(a)
+replicate(5, a(2))
+replicate(5, memA(2))
+
+# Caching is done based on parameters' value, so same-name-but-
+# changed-value correctly produces two different outcomes...
+N &lt;- 4; memA(N)
+N &lt;- 5; memA(N)
+# ... and same-value-but-different-name correctly produces
+#     the same cached outcome.
+N &lt;- 4; memA(N)
+N2 &lt;- 4; memA(N2)
+
+# memoise() doesn't know about default parameters.
+memB &lt;- memoise(function(n, dummy="a") { runif(n) })
+memB(2)
+memB(2, dummy="a")
+# It doesn't know about parameter relevance, either.
+# Different call means different cacheing, no matter
+# that the outcome is the same.
+memB(2, dummy="b")
+
+# You can create multiple memoisations of the same function,
+# and they'll be independent.
+memA(2)
+memA2 &lt;- memoise(a)
+memA(2)  # Still the same outcome
+memA2(2) # Different cache, different outcome
+
+# Don't do the same memoisation assignment twice: a brand-new
+# memoised function also means a brand-new cache, and *that*
+# you could as easily and more legibly achieve using forget().
+# (If you're not sure whether you already memoised something,
+#  use is.memoised() to check.)
+memA(2)
+memA &lt;- memoise(a)
+memA(2)
+</pre>
+
+<hr><div align="center">[Package <em>memoise</em> version 0.2.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

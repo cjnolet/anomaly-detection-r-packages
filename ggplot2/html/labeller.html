@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Generic labeller function for facets</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for labeller {ggplot2}"><tr><td>labeller {ggplot2}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Generic labeller function for facets</h2>
+
+<h3>Description</h3>
+
+<p>One-step function for providing methods or named character vectors
+for displaying labels in facets.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+labeller(..., keep.as.numeric = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Named arguments of the form <code>variable=values</code>,
+where <code>values</code> could be a vector or method.</p>
+</td></tr>
+<tr valign="top"><td><code>keep.as.numeric</code></td>
+<td>
+<p>logical, default TRUE. When FALSE, converts numeric
+values supplied as margins to the facet to characters.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The provided methods are checked for number of arguments.
+If the provided method takes less than two
+(e.g. <code><a href="../../Hmisc/html/capitalize.html">capitalize</a></code>),
+the method is passed <code>values</code>.
+Else (e.g. <code><a href="label_both.html">label_both</a></code>),
+it is passed <code>variable</code> and <code>values</code> (in that order).
+If you want to be certain, use e.g. an anonymous function.
+If errors are returned such as &ldquo;argument &quot;..&quot; is missing, with no default&rdquo;
+or &ldquo;unused argument (variable)&rdquo;, matching the method's arguments does not
+work as expected; make a wrapper function.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Function to supply to
+<code><a href="facet_grid.html">facet_grid</a></code> for the argument <code>labeller</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+p1 &lt;- ggplot(mpg, aes(cty, hwy)) + geom_point()
+p1 + facet_grid(cyl ~ class, labeller=label_both)
+p1 + facet_grid(cyl ~ class, labeller=labeller(cyl=label_both))
+
+ggplot(mtcars, aes(x = mpg, y = wt)) + geom_point() +
+  facet_grid(vs + am ~ gear, margins=TRUE,
+             labeller=labeller(vs=label_both, am=label_both))
+
+capitalize &lt;- function(string) {
+  substr(string, 1, 1) &lt;- toupper(substr(string, 1, 1))
+  string
+}
+conservation_status &lt;- c('cd'='Conservation Dependent',
+                         'en'='Endangered',
+                         'lc'='Least concern',
+                         'nt'='Near Threatened',
+                         'vu'='Vulnerable',
+                         'domesticated'='Domesticated')
+## Source: http://en.wikipedia.org/wiki/Wikipedia:Conservation_status
+
+p2 &lt;- ggplot(msleep, aes(x=sleep_total, y=awake)) + geom_point()
+p2 + facet_grid(vore ~ conservation, labeller = labeller(vore = capitalize))
+
+p2 + facet_grid(vore ~ conservation,
+  labeller=labeller(vore = capitalize, conservation = conservation_status ))
+
+# We could of course have renamed the levels;
+# then we can apply another nifty function
+msleep$conservation2 &lt;- plyr::revalue(msleep$conservation, conservation_status)
+
+p2 %+% msleep +
+  facet_grid(vore ~ conservation2, labeller = labeller(vore = capitalize))
+p2 %+% msleep +
+ facet_grid(vore ~ conservation2, labeller = labeller(conservation2 =
+ label_wrap_gen(10)))
+
+</pre>
+
+<hr><div align="center">[Package <em>ggplot2</em> version 1.0.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

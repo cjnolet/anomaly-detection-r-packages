@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Generate a safe R callback.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for safe_callback {httr}"><tr><td>safe_callback {httr}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Generate a safe R callback.</h2>
+
+<h3>Description</h3>
+
+<p>Whenever an R callback function is passed to Rcurl, it needs to be wrapped
+in this handler which converts errors and interrupts to the appropriate
+values that cause RCurl to terminate a request
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+safe_callback(f)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>f</code></td>
+<td>
+<p>A function.</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre>
+f1 &lt;- function(x) {
+  if (x &lt; 0) stop("Negative value")
+  sqrt(x)
+}
+f2 &lt;- safe_callback(f1)
+f2(-10)
+</pre>
+
+<hr><div align="center">[Package <em>httr</em> version 0.6.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

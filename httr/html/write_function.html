@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: S3 object to define respose writer.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for write_function {httr}"><tr><td>write_function {httr}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>S3 object to define respose writer.</h2>
+
+<h3>Description</h3>
+
+<p>This S3 object allows you to control how the response body is saved.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+write_function(subclass, ...)
+
+write_init(x)
+
+write_opts(x)
+
+write_term(x)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>subclass,...</code></td>
+<td>
+<p>Class name and fields. Used in class constructors.</p>
+</td></tr>
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>A <code>write_function</code> object to process.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>There are three key methods:
+</p>
+
+<ul>
+<li> <p><code>write_init()</code>: called before the write is started. It should
+return a modified object.
+</p>
+</li>
+<li> <p><code>write_opts()</code>: returns a list options passed on to RCurl
+</p>
+</li>
+<li> <p><code>write_term()</code>: called after the request is complete.
+Should return the content (or a pointer to it)
+</p>
+</li></ul>
+
+
+<hr><div align="center">[Package <em>httr</em> version 0.6.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Run R CMD check on all downstream dependencies.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for revdep_check_save_logs {devtools}"><tr><td>revdep_check_save_logs {devtools}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Run R CMD check on all downstream dependencies.</h2>
+
+<h3>Description</h3>
+
+<p>Use <code>revdep_check()</code> to run <code><a href="check_cran.html">check_cran</a>()</code> on all downstream
+dependencies. Summarises the results with <code>revdep_check_summary</code> and
+save logs with <code>revdep_check_save_logs</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+revdep_check_save_logs(res, log_dir = "revdep")
+
+revdep_check_save_summary(res, log_dir = "revdep")
+
+revdep_check_summary(res)
+
+revdep_check(pkg = ".", recursive = FALSE, ignore = NULL,
+  dependencies = c("Depends", "Imports", "Suggests", "LinkingTo"),
+  libpath = getOption("devtools.revdep.libpath"), srcpath = libpath,
+  bioconductor = FALSE, type = getOption("pkgType"),
+  threads = getOption("Ncpus", 1), check_dir = tempfile("check_cran"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>res</code></td>
+<td>
+<p>Result of <code>revdep_check</code></p>
+</td></tr>
+<tr valign="top"><td><code>log_dir</code></td>
+<td>
+<p>Directory in which to save logs</p>
+</td></tr>
+<tr valign="top"><td><code>pkg</code></td>
+<td>
+<p>Path to package. Defaults to current directory.</p>
+</td></tr>
+<tr valign="top"><td><code>recursive</code></td>
+<td>
+<p>If <code>TRUE</code> look for full set of recusive dependencies.</p>
+</td></tr>
+<tr valign="top"><td><code>ignore</code></td>
+<td>
+<p>A character vector of package names to ignore. These packages
+will not appear in returned vector. This is used in
+<code><a href="revdep_check.html">revdep_check</a></code> to avoid packages with installation problems
+or extremely long check times.</p>
+</td></tr>
+<tr valign="top"><td><code>dependencies</code></td>
+<td>
+<p>A character vector listing the types of dependencies
+to follow.</p>
+</td></tr>
+<tr valign="top"><td><code>libpath</code></td>
+<td>
+<p>Path to library to store dependencies packages - if you
+you're doing this a lot it's a good idea to pick a directory and stick
+with it so you don't have to download all the packages every time.</p>
+</td></tr>
+<tr valign="top"><td><code>srcpath</code></td>
+<td>
+<p>Path to directory to store source versions of dependent
+packages - again, this saves a lot of time because you don't need to
+redownload the packages every time you run the package.</p>
+</td></tr>
+<tr valign="top"><td><code>bioconductor</code></td>
+<td>
+<p>If <code>TRUE</code> also look for dependencies amongst
+bioconductor packages.</p>
+</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+<p>binary Package type to test (source, mac.binary etc). Defaults
+to the same type as <code><a href="../../utils/html/install.packages.html">install.packages</a>()</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>threads</code></td>
+<td>
+<p>Number of concurrent threads to use for checking.
+It defaults to the option <code>"Ncpus"</code> or <code>1</code> if unset.</p>
+</td></tr>
+<tr valign="top"><td><code>check_dir</code></td>
+<td>
+<p>Directory to store results.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An invisible list of results. But you'll probably want to look
+at the check results on disk, which are saved in <code>check_dir</code>.
+Summaries of all ERRORs and WARNINGs will be stored in
+<code>check_dir/00check-summary.txt</code>.
+</p>
+
+
+<h3>Check process</h3>
+
+
+<ol>
+<li><p> Install <code>pkg</code> (in special library, see below).
+</p>
+</li>
+<li><p> Find all CRAN packges that dependent on <code>pkg</code>.
+</p>
+</li>
+<li><p> Install those packages, along with their dependencies.
+</p>
+</li>
+<li><p> Run <code>R CMD check</code> on each package.
+</p>
+</li>
+<li><p> Uninstall <code>pkg</code> (so other reverse dependency checks don't
+use the development version instead of the CRAN version)
+</p>
+</li></ol>
+
+
+
+<h3>Package library</h3>
+
+<p>By default <code>revdep_check</code> uses temporary library to store any packages
+that are required by the packages being tested. This ensures that they don't
+interfere with your default library, but means that if you restart R
+between checks, you'll need to reinstall all the packages. If you're
+doing reverse dependency checks frequently, I recommend that you create
+a directory for these packages and set <code>option(devtools.libpath)</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="revdep.html">revdep_maintainers</a>()</code> to run R CMD check on all reverse
+dependencies.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+# Run R CMD check on all downstream dependencies of ggplot2
+res &lt;- revdep_check("ggplot2")
+revdep_check_summary(res)
+revdep_check_save_logs(res)
+
+## End(Not run)
+</pre>
+
+<hr><div align="center">[Package <em>devtools</em> version 1.7.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

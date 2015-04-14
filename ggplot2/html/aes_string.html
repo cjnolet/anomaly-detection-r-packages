@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Generate aesthetic mappings from a string/quoted objects</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for aes_string {ggplot2}"><tr><td>aes_string {ggplot2}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Generate aesthetic mappings from a string/quoted objects</h2>
+
+<h3>Description</h3>
+
+<p>Aesthetic mappings describe how variables in the data are mapped to visual
+properties (aesthetics) of geoms. <code><a href="aes.html">aes</a></code> uses non-standard
+evaluation to capture the variable names. These two variants use
+regular evaluation, which is easier to use inside functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+aes_string(x = NULL, y = NULL, ...)
+
+aes_q(x = NULL, y = NULL, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x,y,...</code></td>
+<td>
+<p>List of name value pairs</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>aes_string</code> and <code>aes_q</code> are particularly useful when writing
+functions that create plots because you can use strings or quoted
+names/calls to define the aesthetic mappings, rather than having to use
+<code><a href="../../base/html/substitute.html">substitute</a></code> to generate a call to <code>aes()</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="aes.html">aes</a></code>
+</p>
+<p>Other aesthetic generators: <code><a href="aes.html">aes</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Threee ways of generating the same aesthetics
+aes(mpg, wt, col = cyl, fill = NULL)
+aes_string("mpg", "wt", col = "cyl", fill = NULL)
+aes_q(quote(mpg), quote(wt), col = quote(cyl), fill = NULL)
+
+aes(col = cyl, fill = NULL)
+aes_string(col = "cyl", fill = NULL)
+aes_q(col = quote(cyl), fill = NULL)
+</pre>
+
+<hr><div align="center">[Package <em>ggplot2</em> version 1.0.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

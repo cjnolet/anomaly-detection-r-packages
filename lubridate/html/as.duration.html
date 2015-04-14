@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Change an object to a duration.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for as.duration {lubridate}"><tr><td>as.duration {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Change an object to a duration.</h2>
+
+<h3>Description</h3>
+
+<p>as.duration changes Interval, Period and numeric class
+objects to Duration objects. Numeric objects are changed
+to Duration objects with the seconds unit equal to the
+numeric value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  as.duration(x)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>Object to be coerced to a duration</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Durations are exact time measurements, whereas periods
+are relative time measurements. See
+<code><a href="Period-class.html">Period-class</a></code>. The length of a period
+depends on when it occurs. Hence, a one to one mapping
+does not exist between durations and periods. When used
+with a period object, as.duration provides an inexact
+estimate of the length of the period; each time unit is
+assigned its most common number of seconds. A period of
+one month is converted to 2628000 seconds (approximately
+30.42 days). This ensures that 12 months will sum to 365
+days, or one normal year. For an exact transformation,
+first transform the period to an interval with
+<code><a href="as.interval.html">as.interval</a></code>.
+</p>
+<p>as.duration.period displays the message &quot;estimate only:
+convert periods to intervals for accuracy&quot; by default.
+You can turn this message off by setting the global
+<code>lubridate.verbose</code> option to FALSE with
+<code>options(lubridate.verbose = FALSE)</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A duration object
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="Duration-class.html">Duration-class</a></code>, <code><a href="new_duration.html">new_duration</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+span &lt;- interval(ymd("2009-01-01"), ymd("2009-08-01")) #interval
+# "2009-01-01 UTC--2009-08-01 UTC"
+as.duration(span)
+# 18316800s (~212 days)
+as.duration(10) # numeric
+# 10s
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

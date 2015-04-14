@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Check if RStudio is running.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for isAvailable {rstudioapi}"><tr><td>isAvailable {rstudioapi}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Check if RStudio is running.</h2>
+
+<h3>Description</h3>
+
+<p>Check if RStudio is running.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+isAvailable(version_needed = NULL)
+
+verifyAvailable(version_needed = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>version_needed</code></td>
+<td>
+<p>An optional version specification. If supplied,
+ensures that RStudio is at least that version.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p><code>isAvailable</code> a boolean; <code>verifyAvailable</code> an error message
+if RStudio is not running
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+rstudioapi::isAvailable()
+## Not run: rstudioapi::verifyAvailable()
+</pre>
+
+<hr><div align="center">[Package <em>rstudioapi</em> version 0.3.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

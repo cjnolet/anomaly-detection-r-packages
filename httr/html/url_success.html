@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Check for an http success status.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for url_success {httr}"><tr><td>url_success {httr}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Check for an http success status.</h2>
+
+<h3>Description</h3>
+
+<p>Checks if a request on a given URL succeeds.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+url_success(...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>passed to HEAD to perform the request (usually just a url)</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>This function returns <code>TRUE</code> if the request succeeds
+(status in the 200s), <code>FALSE otherwise</code>. See
+<code>http://en.wikipedia.org/wiki/Http_status_codes</code>
+for more information on http status codes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other response methods: <code><a href="content.html">content</a></code>,
+<code><a href="content.html">parsed_content</a></code>, <code><a href="content.html">text_content</a></code>;
+<code><a href="http_error.html">http_error</a></code>, <code><a href="http_error.html">stop_for_status</a></code>,
+<code><a href="http_error.html">warn_for_status</a></code>; <code><a href="http_status.html">http_status</a></code>;
+<code><a href="response.html">response</a></code>; <code><a href="url_ok.html">url_ok</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+url_success("http://www.google.com")
+url_success("http://httpbin.org/status/200")
+url_success("http://httpbin.org/status/201")
+url_success("http://httpbin.org/status/300")
+</pre>
+
+<hr><div align="center">[Package <em>httr</em> version 0.6.1 <a href="00Index.html">Index</a>]</div>
+</body></html>

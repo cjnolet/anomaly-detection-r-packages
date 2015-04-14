@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Create a duration object.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for duration {lubridate}"><tr><td>duration {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Create a duration object.</h2>
+
+<h3>Description</h3>
+
+<p>duration creates a duration object with the specified
+values. duration provides the behavior of
+<code><a href="new_duration.html">new_duration</a></code> in a way that is more suitable
+for automating within a function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  duration(num = 0, units = "seconds")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>num</code></td>
+<td>
+<p>the number of time units to include in the
+duration</p>
+</td></tr>
+<tr valign="top"><td><code>units</code></td>
+<td>
+<p>a character string that specifies the type
+of units that num refers to.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Durations display as the number of seconds in a time
+span. When this number is large, durations also display
+an estimate in larger units,; however, the underlying
+object is always recorded as a fixed number of seconds.
+For display and creation purposes, units are converted to
+seconds using their most common lengths in seconds.
+Minutes = 60 seconds, hours = 3600 seconds, days = 86400
+seconds, weeks = 604800.
+</p>
+<p>Durations record the exact number of seconds in a time
+span. They measure the exact passage of time but do not
+always align with measurements made in larger units of
+time such as hours, months and years. This is because the
+length of larger time units can be affected by
+conventions such as leap years and Daylight Savings Time.
+Base R provides a second class for measuring durations,
+the difftime class.
+</p>
+<p>Duration objects can be easily created with the helper
+functions <code><a href="dseconds.html">dweeks</a></code>, <code><a href="dseconds.html">ddays</a></code>,
+<code><a href="dseconds.html">dminutes</a></code>, <code><a href="dseconds.html">dseconds</a></code>. These
+objects can be added to and subtracted to date- times to
+create a user interface similar to object oriented
+programming.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a duration object
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="new_duration.html">new_duration</a></code>, <code><a href="as.duration.html">as.duration</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+duration(90, "seconds")
+# 90s
+duration(1.5, "minutes")
+# 90s
+duration(-1, "days")
+# -86400s (~-1 days)
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

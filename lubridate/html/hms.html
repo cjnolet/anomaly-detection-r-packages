@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Create a period with the specified hours, minutes, and...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for hms {lubridate}"><tr><td>hms {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Create a period with the specified hours, minutes, and seconds</h2>
+
+<h3>Description</h3>
+
+<p>Transforms a character or numeric vector into a period
+object with the specified number of hours, minutes, and
+seconds. hms() recognizes all non-numeric separators.
+After hours, minutes and seconds have been parsed, the
+remaining input is ingored.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  hms(..., quiet = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>a character vector of hour minute second
+triples</p>
+</td></tr>
+<tr valign="top"><td><code>quiet</code></td>
+<td>
+<p>logical. When TRUE function evalueates
+without displaying customary messages.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a vector of period objects
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="hm.html">hm</a>, <a href="ms.html">ms</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+x &lt;- c("09:10:01", "09:10:02", "09:10:03", "Collided at 9:20:04 pm")
+hms(x)
+# [1] 9 hours, 10 minutes and 1 second
+# [2] 9 hours, 10 minutes and 2 seconds
+# [3] 9 hours, 10 minutes and 3 seconds
+
+hms("7 6 5", "3-23---2", "2 : 23 : 33")
+## [1] 7 hours, 6 minutes and 5 seconds
+## [2] 3 hours, 23 minutes and 2 seconds
+## [3] 2 hours, 23 minutes and 33 seconds
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

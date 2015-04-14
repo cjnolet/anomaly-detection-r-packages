@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Is x an Interval object?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for is.interval {lubridate}"><tr><td>is.interval {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Is x an Interval object?</h2>
+
+<h3>Description</h3>
+
+<p>Is x an Interval object?
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  is.interval(x)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>an R object</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>TRUE if x is an Interval object, FALSE otherwise.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="is.instant.html">is.instant</a></code>, <code><a href="is.timespan.html">is.timespan</a></code>,
+<code><a href="is.period.html">is.period</a></code>, <code><a href="is.duration.html">is.duration</a></code>,
+<code><a href="Interval-class.html">Interval-class</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+is.interval(new_period(months= 1, days = 15)) # FALSE
+is.interval(new_interval(ymd(20090801), ymd(20090809))) # TRUE
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

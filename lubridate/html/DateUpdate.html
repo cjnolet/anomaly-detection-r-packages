@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Changes the components of a date object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for DateUpdate {lubridate}"><tr><td>DateUpdate {lubridate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Changes the components of a date object</h2>
+
+<h3>Description</h3>
+
+<p>update.Date and update.POSIXt return a date with the
+specified elements updated. Elements not specified will
+be left unaltered. update.Date and update.POSIXt do not
+add the specified values to the existing date, they
+substitute them for the appropriate parts of the existing
+date.
+</p>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>a date-time object</p>
+</td></tr>
+<tr valign="top"><td><code>years</code></td>
+<td>
+<p>a value to substitute for the date's year
+component</p>
+</td></tr>
+<tr valign="top"><td><code>months</code></td>
+<td>
+<p>a value to substitute for the date's month
+component</p>
+</td></tr>
+<tr valign="top"><td><code>ydays</code></td>
+<td>
+<p>a value to substitute for the date's yday
+component</p>
+</td></tr>
+<tr valign="top"><td><code>wdays</code></td>
+<td>
+<p>a value to substitute for the date's wday
+component</p>
+</td></tr>
+<tr valign="top"><td><code>mdays</code></td>
+<td>
+<p>a value to substitute for the date's mday
+component</p>
+</td></tr>
+<tr valign="top"><td><code>days</code></td>
+<td>
+<p>a value to substitute for the date's mday
+component</p>
+</td></tr>
+<tr valign="top"><td><code>hours</code></td>
+<td>
+<p>a value to substitute for the date's hour
+component</p>
+</td></tr>
+<tr valign="top"><td><code>minutes</code></td>
+<td>
+<p>a value to substitute for the date's
+minute component</p>
+</td></tr>
+<tr valign="top"><td><code>seconds</code></td>
+<td>
+<p>a value to substitute for the date's
+second component</p>
+</td></tr>
+<tr valign="top"><td><code>tzs</code></td>
+<td>
+<p>a value to substitute for the date's tz
+component</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>...</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a date object with the requested elements updated. The
+object will retain its original class unless an element
+is updated which the original class does not support. In
+this case, the date returned will be a POSIXlt date
+object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+date &lt;- as.POSIXlt("2009-02-10")
+update(date, year = 2010, month = 1, mday = 1)
+# "2010-01-01 CST"
+
+update(date, year =2010, month = 13, mday = 1)
+# "2011-01-01 CST"
+
+update(date, minute = 10, second = 3)
+# "2009-02-10 00:10:03 CST"
+</pre>
+
+<hr><div align="center">[Package <em>lubridate</em> version 1.3.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

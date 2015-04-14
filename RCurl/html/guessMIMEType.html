@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Infer the MIME type from a file name</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for guessMIMEType {RCurl}"><tr><td>guessMIMEType {RCurl}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Infer the MIME type from a file name</h2>
+
+<h3>Description</h3>
+
+<p>This function returns the MIME type, i.e. part of the value
+used in the Content-Type for an HTTP request/response
+or in email to identify the nature of the content.
+This is a string such as &quot;text/plain&quot; or &quot;text/xml&quot;
+or &quot;image/png&quot;.
+</p>
+<p>The function consults an R object constructed
+by reading a Web site of known MIME types (not necessarily all)
+and matching the extension of the file name to the names of that table.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+guessMIMEType(name, default = NA)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>name</code></td>
+<td>
+<p>character vector of file names</p>
+</td></tr>
+<tr valign="top"><td><code>default</code></td>
+<td>
+<p>the value to use if no MIME type is found in the table
+for the given file name/extension.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A character vector giving the MIME types for each element of <code>name</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang
+</p>
+
+
+<h3>References</h3>
+
+<p>The table of MIME types and extensions was programmatically extracted
+from <a href="http://www.webmaster-toolkit.com/mime-types.shtml">http://www.webmaster-toolkit.com/mime-types.shtml</a> or
+<a href="http://reference.sitepoint.com/html/mime-types-full">http://reference.sitepoint.com/html/mime-types-full</a> with
+<code>
+  tbls = readHTMLTable("http://www.webmaster-toolkit.com/mime-types.shtml")
+  tmp = tbls[[1]][-1,]
+  mimeTypeExtensions = structure(as.character(tmp[[2]]), names = gsub("^\.", "", tmp[[1]]))
+  save(mimeTypeExtensions, file = "data/mimeTypeExtensions.rda")
+</code>
+The IANA list is not as convenient to programmatically compile.
+<a href="http://www.ltsw.se/knbase/internet/mime.htp">http://www.ltsw.se/knbase/internet/mime.htp</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Uploading file.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+ guessMIMEType(c("foo.txt", "foo.png", "foo.jpeg", "foo.Z", "foo.R"))
+
+ guessMIMEType("foo.bob")
+ guessMIMEType("foo.bob", "application/x-binary")
+</pre>
+
+<hr><div align="center">[Package <em>RCurl</em> version 1.95-4.5 <a href="00Index.html">Index</a>]</div>
+</body></html>
