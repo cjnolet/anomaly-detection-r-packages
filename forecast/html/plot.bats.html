@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Plot components from BATS model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for plot.bats {forecast}"><tr><td>plot.bats {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Plot components from BATS model</h2>
+
+<h3>Description</h3>
+
+<p>Produces a plot of the level, slope and seasonal components from a BATS or TBATS model.</p>
+
+
+<h3>Usage</h3>
+
+<pre>## S3 method for class 'bats'
+plot(x, main="Decomposition by BATS model", ...) 
+## S3 method for class 'tbats'
+plot(x, main="Decomposition by TBATS model", ...) 
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>Object of class &ldquo;ets&rdquo;.</p>
+</td></tr>
+<tr valign="top"><td><code>main</code></td>
+<td>
+<p>Main title for plot.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Other plotting parameters passed to <code><a href="../../graphics/html/par.html">par</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>None. Function produces a plot</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="bats.html">bats</a></code>,<code><a href="tbats.html">tbats</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+fit &lt;- tbats(USAccDeaths)
+plot(fit)
+## End(Not run)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Seasonal dummy variables</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for seasonaldummy {forecast}"><tr><td>seasonaldummy {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Seasonal dummy variables</h2>
+
+<h3>Description</h3>
+
+<p><code>seasonaldummy</code> and <code>seasonaldummyf</code> return matrices of dummy variables suitable for use in <code><a href="../../stats/html/arima.html">arima</a></code>, <code><a href="../../stats/html/lm.html">lm</a></code> or <code><a href="tslm.html">tslm</a></code>. The last season is omitted and used as the control.
+</p>
+<p><code>fourier</code> and <code>fourierf</code> return matrices containing terms from a Fourier series, up to order <code>K</code>, suitable for use in <code><a href="../../stats/html/arima.html">arima</a></code>, <code><a href="../../stats/html/lm.html">lm</a></code> or <code><a href="tslm.html">tslm</a></code>. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>seasonaldummy(x)
+seasonaldummyf(x,h)
+fourier(x,K)
+fourierf(x,K,h)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>Seasonal time series: a <code>ts</code> or a <code>msts</code> object</p>
+</td></tr>
+<tr valign="top"><td><code>h</code></td>
+<td>
+<p>Number of periods ahead to forecast</p>
+</td></tr>
+<tr valign="top"><td><code>K</code></td>
+<td>
+<p>Maximum order(s) of Fourier terms</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The number of dummy variables, or the period of the Fourier terms, is determined from the time series characteristics of <code>x</code>. The length of <code>x</code> also determines the number of rows for the matrices returned by <code>seasonaldummy</code> and <code>fourier</code>. The value of <code>h</code> determines the number of rows for the matrices returned by <code>seasonaldummyf</code> and <code>fourierf</code>. The values within <code>x</code> are not used in any function.
+</p>
+<p>When <code>x</code> is a <code>ts</code> object, the value of <code>K</code> should be an integer and specifies the number of sine and cosine terms to return. Thus, the matrix returned has <code>2*K</code> columns.
+</p>
+<p>When <code>x</code> is a <code>msts</code> object, then <code>K</code> should be a vector of integers specifying the number of sine and cosine terms for each of the seasonal periods. Then the matrix returned will have <code>2*sum(K)</code> columns.  
+</p>
+
+
+<h3>Value</h3>
+
+<p>Numerical matrix.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+plot(ldeaths)
+
+# Using seasonal dummy variables
+month &lt;- seasonaldummy(ldeaths)
+deaths.lm  &lt;- tslm(ldeaths ~ month)
+tsdisplay(residuals(deaths.lm))
+ldeaths.fcast &lt;- forecast(deaths.lm, 
+  data.frame(month=I(seasonaldummyf(ldeaths,36))))
+plot(ldeaths.fcast)
+
+# A simpler approach to seasonal dummy variables
+deaths.lm  &lt;- tslm(ldeaths ~ season)
+ldeaths.fcast &lt;- forecast(deaths.lm, h=36)
+plot(ldeaths.fcast)
+
+# Using Fourier series
+X &lt;- fourier(ldeaths,3)
+deaths.lm  &lt;- tslm(ldeaths ~ X)
+ldeaths.fcast &lt;- forecast(deaths.lm, 
+  data.frame(X=I(fourierf(ldeaths,3,36))))
+plot(ldeaths.fcast)
+
+# Using Fourier series for a "msts" object
+Z &lt;- fourier(taylor, K = c(3, 3))
+taylor.lm &lt;- tslm(taylor ~ Z)
+taylor.fcast &lt;- forecast(taylor.lm, 
+  data.frame(Z = I(fourierf(taylor, K = c(3, 3), h = 270))))
+plot(taylor.fcast)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

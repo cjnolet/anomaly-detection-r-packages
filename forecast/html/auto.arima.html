@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Fit best ARIMA model to univariate time series</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for auto.arima {forecast}"><tr><td>auto.arima {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Fit best ARIMA model to univariate time series</h2>
+
+<h3>Description</h3>
+
+<p>Returns best ARIMA model according to either AIC, AICc or BIC value.
+The function conducts a search over
+possible model within the order constraints provided.</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+auto.arima(x, d=NA, D=NA, max.p=5, max.q=5,
+     max.P=2, max.Q=2, max.order=5, max.d=2, max.D=1, 
+     start.p=2, start.q=2, start.P=1, start.Q=1, 
+     stationary=FALSE, seasonal=TRUE,
+     ic=c("aicc","aic", "bic"), stepwise=TRUE, trace=FALSE,
+     approximation=(length(x)&gt;100 | frequency(x)&gt;12), xreg=NULL,
+     test=c("kpss","adf","pp"), seasonal.test=c("ocsb","ch"),
+     allowdrift=TRUE, lambda=NULL, parallel=FALSE, num.cores=2)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a univariate time series</p>
+</td></tr>
+<tr valign="top"><td><code>d</code></td>
+<td>
+<p>Order of first-differencing. If missing, will choose a value based on KPSS test.</p>
+</td></tr>
+<tr valign="top"><td><code>D</code></td>
+<td>
+<p>Order of seasonal-differencing. If missing, will choose a value based on OCSB test.</p>
+</td></tr>
+<tr valign="top"><td><code>max.p</code></td>
+<td>
+<p>Maximum value of p</p>
+</td></tr>
+<tr valign="top"><td><code>max.q</code></td>
+<td>
+<p>Maximum value of q</p>
+</td></tr>
+<tr valign="top"><td><code>max.P</code></td>
+<td>
+<p>Maximum value of P</p>
+</td></tr>
+<tr valign="top"><td><code>max.Q</code></td>
+<td>
+<p>Maximum value of Q</p>
+</td></tr>
+<tr valign="top"><td><code>max.order</code></td>
+<td>
+<p>Maximum value of p+q+P+Q if model selection is not stepwise.</p>
+</td></tr>
+<tr valign="top"><td><code>max.d</code></td>
+<td>
+<p>Maximum number of non-seasonal differences</p>
+</td></tr>
+<tr valign="top"><td><code>max.D</code></td>
+<td>
+<p>Maximum number of seasonal differences</p>
+</td></tr>
+<tr valign="top"><td><code>start.p</code></td>
+<td>
+<p>Starting value of p in stepwise procedure.</p>
+</td></tr>
+<tr valign="top"><td><code>start.q</code></td>
+<td>
+<p>Starting value of q in stepwise procedure.</p>
+</td></tr>
+<tr valign="top"><td><code>start.P</code></td>
+<td>
+<p>Starting value of P in stepwise procedure.</p>
+</td></tr>
+<tr valign="top"><td><code>start.Q</code></td>
+<td>
+<p>Starting value of Q in stepwise procedure.</p>
+</td></tr>
+<tr valign="top"><td><code>stationary</code></td>
+<td>
+<p>If <code>TRUE</code>, restricts search to stationary models.</p>
+</td></tr>
+<tr valign="top"><td><code>seasonal</code></td>
+<td>
+<p>If <code>FALSE</code>, restricts search to non-seasonal models.</p>
+</td></tr>
+<tr valign="top"><td><code>ic</code></td>
+<td>
+<p>Information criterion to be used in model selection.</p>
+</td></tr>
+<tr valign="top"><td><code>stepwise</code></td>
+<td>
+<p>If <code>TRUE</code>, will do stepwise selection (faster). Otherwise, it searches over all models. Non-stepwise selection can be very slow, especially for seasonal models.</p>
+</td></tr>
+<tr valign="top"><td><code>trace</code></td>
+<td>
+<p>If <code>TRUE</code>, the list of ARIMA models considered will be reported.</p>
+</td></tr>
+<tr valign="top"><td><code>approximation</code></td>
+<td>
+<p>If <code>TRUE</code>, estimation is via conditional sums of squares andthe information criteria used for model selection are approximated. The final model is still computed using maximum likelihood estimation. Approximation should be used for long time series or a high seasonal period to avoid excessive computation times.</p>
+</td></tr>
+<tr valign="top"><td><code>xreg</code></td>
+<td>
+<p>Optionally, a vector or matrix of external regressors, which must have the same number of rows as x.</p>
+</td></tr>
+<tr valign="top"><td><code>test</code></td>
+<td>
+<p>Type of unit root test to use. See <code><a href="numberdiffs.html">ndiffs</a></code> for details.</p>
+</td></tr>
+<tr valign="top"><td><code>seasonal.test</code></td>
+<td>
+<p>This determines which seasonal unit root test is used. See <code><a href="numberdiffs.html">nsdiffs</a></code> for details.</p>
+</td></tr>
+<tr valign="top"><td><code>allowdrift</code></td>
+<td>
+<p>If <code>TRUE</code>, models with drift terms are considered.</p>
+</td></tr>
+<tr valign="top"><td><code>lambda</code></td>
+<td>
+<p>Box-Cox transformation parameter. Ignored if NULL. Otherwise, data transformed before model is estimated.</p>
+</td></tr>
+<tr valign="top"><td><code>parallel</code></td>
+<td>
+<p>If <code>TRUE</code> and <code>stepwise = FALSE</code>, then the specification search is done in parallel. This can give a significant speedup on mutlicore machines.</p>
+</td></tr>
+<tr valign="top"><td><code>num.cores</code></td>
+<td>
+<p>Allows the user to specify the amount of parallel processes to be used if <code>parallel = TRUE</code> and <code>stepwise = FALSE</code>. If <code>NULL</code>, then the number of logical cores is automatically detected and all available cores are used.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Non-stepwise selection can be slow, especially for seasonal data. Stepwise algorithm outlined in Hyndman and Khandakar (2008) except that the default method for selecting seasonal differences is now the OCSB test rather than the Canova-Hansen test.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Same as for <code><a href="../../stats/html/arima.html">arima</a></code></p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>References</h3>
+
+<p>Hyndman, R.J. and Khandakar, Y. (2008) &quot;Automatic time series forecasting: The forecast package for R&quot;, <EM>Journal of Statistical Software</EM>, <B>26</B>(3).
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="arima.html">Arima</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>fit &lt;- auto.arima(WWWusage)
+plot(forecast(fit,h=20))
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

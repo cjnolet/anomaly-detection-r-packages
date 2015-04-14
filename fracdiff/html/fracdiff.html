@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: ML Estimates for Fractionally-Differenced ARIMA (p,d,q)...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for fracdiff {fracdiff}"><tr><td>fracdiff {fracdiff}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>ML Estimates for Fractionally-Differenced ARIMA (p,d,q) models</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the maximum likelihood estimators of the parameters
+of a fractionally-differenced ARIMA (p,d,q) model, together (if possible)
+with their estimated covariance and correlation matrices and standard
+errors, as well as the value of the maximized likelihood.  The
+likelihood is approximated using the fast and accurate method of
+Haslett and Raftery (1989).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+fracdiff(x, nar = 0, nma = 0,
+         ar = rep(NA, max(nar, 1)), ma = rep(NA, max(nma, 1)),
+         dtol = NULL, drange = c(0, 0.5), h, M = 100, trace = 0)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>time series (numeric vector) for the ARIMA model</p>
+</td></tr>
+<tr valign="top"><td><code>nar</code></td>
+<td>
+<p>number of autoregressive parameters <i>p</i>.</p>
+</td></tr>
+<tr valign="top"><td><code>nma</code></td>
+<td>
+<p>number of moving average parameters <i>q</i>.</p>
+</td></tr>
+<tr valign="top"><td><code>ar</code></td>
+<td>
+<p>initial autoregressive parameters.</p>
+</td></tr>
+<tr valign="top"><td><code>ma</code></td>
+<td>
+<p>initial moving average parameters.</p>
+</td></tr>
+<tr valign="top"><td><code>dtol</code></td>
+<td>
+<p>interval of uncertainty for <i>d</i>.  If <code>dtol</code> is
+negative or NULL, the fourth root of machine precision will be used.
+<code>dtol</code> will be altered if necessary by the program.</p>
+</td></tr>
+<tr valign="top"><td><code>drange</code></td>
+<td>
+<p>interval over which the likelihood function is to be
+maximized as a function of <i>d</i>.</p>
+</td></tr>
+<tr valign="top"><td><code>h</code></td>
+<td>
+<p>size of finite difference interval for numerical derivatives.
+By default (or if negative),
+
+<code>h = min(0.1, eps.5 * (1+ abs(cllf)))</code>, where
+<code>clff := log. max.likelihood</code> (as returned) and
+<code>eps.5 := sqrt(.Machine$double.neg.eps)</code> (typically 1.05e-8).
+</p>
+<p>This is used to compute a finite difference approximation to the
+Hessian, and hence only influences the cov, cor, and std.error
+computations; see also <code><a href="fracdiff.var.html">fracdiff.var</a></code>.
+</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>number of terms in the likelihood approximation (see Haslett
+and Raftery 1989).</p>
+</td></tr>
+<tr valign="top"><td><code>trace</code></td>
+<td>
+<p>optional integer, specifying a trace level.  If positive,
+currently the &ldquo;outer loop&rdquo; iterations produce one line of
+diagnostic output.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The <span class="pkg">fracdiff</span> package has &mdash; for historical reason, namely,
+S-plus <code>arima()</code> compatibility &mdash; used an unusual
+parametrization for the MA part, see also the &lsquo;Details&rsquo; section
+in <code><a href="../../stats/html/arima.html">arima</a></code> (in standard <font face="Courier New,Courier" color="#666666"><b>R</b></font>'s <span class="pkg">stats</span> package).
+The ARMA (i.e., <i>d = 0</i>) model in <code>fracdiff()</code> and
+<code><a href="fracdiff.sim.html">fracdiff.sim</a>()</code> is
+</p>
+<p align="center"><i>
+    X[t] - a[1]X[t-1] - &hellip; - a[p]X[t-p] = e[t] - b[1]e[t-1] - &hellip; - b[q]e[t-q],</i></p>
+
+<p>where <i>e[i]</i> are mean zero i.i.d., for <code>fracdiff()</code>'s
+estimation,  <i>e[i] ~ N(0, s^2)</i>.
+This model indeed has the signs of the MA coefficients <i>b[j]</i>
+<EM>inverted</EM>, compared to other parametrizations, including
+Wikipedia's
+<a href="http://en.wikipedia.org/wiki/Autoregressive_moving-average_model">http://en.wikipedia.org/wiki/Autoregressive_moving-average_model</a>
+and the one of <code><a href="../../stats/html/arima.html">arima</a></code>.
+</p>
+<p>Note that <code>NA</code>'s in the initial values for <code>ar</code> or <code>ma</code>
+are replaced by <i>0</i>'s.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of S3 <code><a href="../../base/html/class.html">class</a></code> <code>"fracdiff"</code>, which is
+a list with components:
+</p>
+<table summary="R valueblock">
+<tr valign="top"><td><code>log.likelihood</code></td>
+<td>
+<p>logarithm of the maximum likelihood</p>
+</td></tr>
+<tr valign="top"><td><code>d</code></td>
+<td>
+<p>optimal fractional-differencing parameter</p>
+</td></tr>
+<tr valign="top"><td><code>ar</code></td>
+<td>
+<p>vector of optimal autoregressive parameters</p>
+</td></tr>
+<tr valign="top"><td><code>ma</code></td>
+<td>
+<p>vector of optimal moving average parameters</p>
+</td></tr>
+<tr valign="top"><td><code>covariance.dpq</code></td>
+<td>
+<p>covariance matrix of the parameter estimates
+(order : d, ar, ma).</p>
+</td></tr>
+<tr valign="top"><td><code>stderror.dpq</code></td>
+<td>
+<p>standard errors of the parameter estimates  c(d, ar, ma).</p>
+</td></tr>
+<tr valign="top"><td><code>correlation.dpq</code></td>
+<td>
+<p>correlation matrix of the parameter estimates
+(order : d, ar, ma).</p>
+</td></tr>
+<tr valign="top"><td><code>h</code></td>
+<td>
+<p>interval used for numerical derivatives, see <code>h</code> argument.</p>
+</td></tr>
+<tr valign="top"><td><code>dtol</code></td>
+<td>
+<p>interval of uncertainty for d; possibly altered from input
+<code>dtol</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>M</code></td>
+<td>
+<p>as input.</p>
+</td></tr>
+<tr valign="top"><td><code>hessian.dpq</code></td>
+<td>
+<p>the approximate Hessian matrix <i>H</i> of 2nd order
+partial derivatives of the likelihood with respect to the
+parameters; this is (internally) used to compute
+<code>covariance.dpq</code>, the approximate asymptotic covariance matrix as
+<i>C = (-H)^{-1}</i>.</p>
+</td></tr>
+</table>
+
+
+<h3>Method</h3>
+
+<p>The optimization is carried out in two levels:<br>
+an outer univariate unimodal
+optimization in d over the interval <code>drange</code> (typically [0,.5]),
+using Brent's <code>fmin</code> algorithm), and<br>
+an inner nonlinear least-squares optimization in the AR and MA parameters to
+minimize white noise variance (uses the MINPACK subroutine <code>lm</code>DER).
+written by Chris Fraley (March 1991).
+</p>
+
+
+<h3>Note</h3>
+
+<p>Ordinarily, <code>nar</code> and <code>nma</code> should not be too large (say &lt; 10)
+to avoid degeneracy in the model.  The function
+<code><a href="fracdiff.sim.html">fracdiff.sim</a></code> is available for generating test problems.
+</p>
+
+
+<h3>References</h3>
+
+<p>J. Haslett and A. E. Raftery (1989)
+Space-time Modelling with Long-memory Dependence: Assessing Ireland's
+Wind Power Resource (with Discussion);
+<EM>Applied Statistics</EM> <B>38</B>, 1&ndash;50.
+</p>
+<p>R. Brent (1973)
+<EM>Algorithms for Minimization without Derivatives</EM>, Prentice-Hall
+</p>
+<p>J. J. More, B. S. Garbow, and K. E. Hillstrom (1980)
+<EM>Users Guide for MINPACK-1</EM>, Technical Report ANL-80-74,
+Applied Mathematics Division, Argonne National Laboratory.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="fd-methods.html">coef.fracdiff</a></code> and other methods for <code>"fracdiff"</code>
+objects;
+<code><a href="fracdiff.sim.html">fracdiff.sim</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+ts.test &lt;- fracdiff.sim( 5000, ar = .2, ma = -.4, d = .3)
+fd. &lt;- fracdiff( ts.test$series,
+                 nar = length(ts.test$ar), nma = length(ts.test$ma))
+fd.
+## Confidence intervals
+confint(fd.)
+
+## with iteration output
+fd2 &lt;- fracdiff(ts.test$series, nar = 1, nma = 1, trace = 1)
+all.equal(fd., fd2)
+</pre>
+
+<hr><div align="center">[Package <em>fracdiff</em> version 1.4-2 <a href="00Index.html">Index</a>]</div>
+</body></html>

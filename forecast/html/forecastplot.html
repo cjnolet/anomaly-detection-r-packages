@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Forecast plot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for plot.forecast {forecast}"><tr><td>plot.forecast {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Forecast plot</h2>
+
+<h3>Description</h3>
+
+<p>Plots historical data with forecasts and prediction intervals.</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S3 method for class 'forecast'
+plot(x, include, plot.conf=TRUE, shaded=TRUE,
+    shadebars=(length(x$mean)&lt;5), shadecols=NULL, col=1, fcol=4,
+    pi.col=1, pi.lty=2, ylim=NULL, main=NULL, ylab="", xlab="", type="l",
+    flty=1, flwd=2, ...)
+
+## S3 method for class 'splineforecast'
+plot(x, fitcol=2, type="o", pch=19, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>Forecast object produced by <code><a href="forecast.html">forecast</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>include</code></td>
+<td>
+<p>number of values from time series to include in plot</p>
+</td></tr>
+<tr valign="top"><td><code>plot.conf</code></td>
+<td>
+<p>Logical flag indicating whether to plot prediction intervals.</p>
+</td></tr>
+<tr valign="top"><td><code>shaded</code></td>
+<td>
+<p>Logical flag indicating whether prediction intervals should be shaded (TRUE) or lines (FALSE)</p>
+</td></tr>
+<tr valign="top"><td><code>shadebars</code></td>
+<td>
+<p>Logical flag indicating if prediction intervals should be plotted as shaded bars (if TRUE) or a shaded polygon (if FALSE).
+Ignored if <code>shaded=FALSE</code>. Bars are plotted by default if there are fewer than five forecast horizons.</p>
+</td></tr>
+<tr valign="top"><td><code>shadecols</code></td>
+<td>
+<p>Colors for shaded prediction intervals. To get default colors used prior to v3.26, set <code>shadecols="oldstyle"</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>col</code></td>
+<td>
+<p>Colour for the data line.</p>
+</td></tr>
+<tr valign="top"><td><code>fcol</code></td>
+<td>
+<p>Colour for the forecast line.</p>
+</td></tr>
+<tr valign="top"><td><code>flty</code></td>
+<td>
+<p>Line type for the forecast line.</p>
+</td></tr>
+<tr valign="top"><td><code>flwd</code></td>
+<td>
+<p>Line width for the forecast line.</p>
+</td></tr>
+<tr valign="top"><td><code>pi.col</code></td>
+<td>
+<p>If <code>shade=FALSE</code> and <code>plot.conf=TRUE</code>, the prediction intervals are plotted in this colour.</p>
+</td></tr>
+<tr valign="top"><td><code>pi.lty</code></td>
+<td>
+<p>If <code>shade=FALSE</code> and <code>plot.conf=TRUE</code>, the prediction intervals are plotted using this line type.</p>
+</td></tr>
+<tr valign="top"><td><code>ylim</code></td>
+<td>
+<p>Limits on y-axis</p>
+</td></tr>
+<tr valign="top"><td><code>main</code></td>
+<td>
+<p>Main title</p>
+</td></tr>
+<tr valign="top"><td><code>ylab</code></td>
+<td>
+<p>Y-axis label</p>
+</td></tr>
+<tr valign="top"><td><code>xlab</code></td>
+<td>
+<p>X-axis label</p>
+</td></tr>
+<tr valign="top"><td><code>fitcol</code></td>
+<td>
+<p>Line colour for fitted values.</p>
+</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+<p>1-character string giving the type of plot desired. As for <code><a href="../../graphics/html/plot.default.html">plot.default</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>pch</code></td>
+<td>
+<p>Plotting character (if <code>type=="p"</code> or <code>type=="o"</code>).</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional arguments to <code><a href="../../graphics/html/plot.html">plot</a></code>.</p>
+</td></tr> </table>
+
+
+<h3>Value</h3>
+
+<p>None.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>References</h3>
+
+<p>Hyndman and Athanasopoulos (2014) <EM>Forecasting: principles and practice</EM>, OTexts: Melbourne, Australia. <a href="http://www.otexts.org/fpp/">http://www.otexts.org/fpp/</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../stats/html/plot.ts.html">plot.ts</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>deaths.fit &lt;- hw(USAccDeaths,h=48)
+plot(deaths.fit)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

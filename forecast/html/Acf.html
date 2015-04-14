@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: (Partial) Autocorrelation Function Estimation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for Acf {forecast}"><tr><td>Acf {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>(Partial) Autocorrelation Function Estimation</h2>
+
+<h3>Description</h3>
+
+<p>The function <code>Acf</code> computes (and by default plots) an estimate of the autocorrelation function of a univariate time series. Function <code>Pacf</code> computes (and by default plots) an estimate of the partial autocorrelation function of a univariate time series. These improve the <code><a href="../../stats/html/acf.html">acf</a></code> and <code><a href="../../stats/html/pacf.html">pacf</a></code> functions when applied to univariate time series. 
+The main differences are that <code>Acf</code> does not plot a spike at lag 0 (which is redundant)
+and the horizontal axes show lags in time units rather than seasonal units.</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+Acf(x, lag.max=NULL, type=c("correlation", "partial"), 
+   plot=TRUE, main=NULL, ylim=NULL, na.action=na.contiguous, ...)
+Pacf(x, main=NULL, ...) </pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a univariate time series</p>
+</td></tr>
+<tr valign="top"><td><code>lag.max</code></td>
+<td>
+<p>maximum lag at which to calculate the acf. Default is 10*log10(N/m) where N is the number of observations and m the number of series. Will be automatically limited to one less than the number of observations in the series.</p>
+</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+<p>character string giving the type of acf to be computed. Allowed values are &quot;<code>correlation</code>&quot; (the default) or &quot;<code>partial</code>&quot;.</p>
+</td></tr>
+<tr valign="top"><td><code>plot</code></td>
+<td>
+<p>logical. If TRUE (the default) the acf is plotted.</p>
+</td></tr>
+<tr valign="top"><td><code>main</code></td>
+<td>
+<p>Title for plot</p>
+</td></tr>
+<tr valign="top"><td><code>ylim</code></td>
+<td>
+<p>The y limits of the plot</p>
+</td></tr>
+<tr valign="top"><td><code>na.action</code></td>
+<td>
+<p>function to handle missing values. Default is <code><a href="../../stats/html/na.contiguous.html">na.contiguous</a></code>.  Useful alternatives are <code><a href="../../stats/html/na.pass.html">na.pass</a></code> and <code><a href="na.interp.html">na.interp</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Additional arguments passed to <code><a href="../../stats/html/acf.html">acf</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>See the <code><a href="../../stats/html/acf.html">acf</a></code> function in the stats package.</p>
+
+
+<h3>Value</h3>
+
+<p>See the <code><a href="../../stats/html/acf.html">acf</a></code> function in the stats package. 
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../stats/html/acf.html">acf</a></code>, <code><a href="../../stats/html/pacf.html">pacf</a></code>, <code><a href="ts.display.html">tsdisplay</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>
+Acf(wineind)
+Pacf(wineind)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

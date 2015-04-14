@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Moving-average smoothing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for ma {forecast}"><tr><td>ma {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Moving-average smoothing</h2>
+
+<h3>Description</h3>
+
+<p>Computes a simple moving average smoother.</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ma(x, order, centre=TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>Univariate time series</p>
+</td></tr>
+<tr valign="top"><td><code>order</code></td>
+<td>
+<p>Order of moving average smoother</p>
+</td></tr>
+<tr valign="top"><td><code>centre</code></td>
+<td>
+<p>If TRUE, then the moving average is centred.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Numerical time series object containing the smoothed values.</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../stats/html/ksmooth.html">ksmooth</a></code>, <code><a href="../../stats/html/decompose.html">decompose</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>
+plot(wineind)
+sm &lt;- ma(wineind,order=12)
+lines(sm,col="red")
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Sperio Estimate for 'd' in ARFIMA(p,d,q)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for fdSperio {fracdiff}"><tr><td>fdSperio {fracdiff}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Sperio Estimate for 'd' in ARFIMA(p,d,q)</h2>
+
+<h3>Description</h3>
+
+<p>This function makes use Reisen (1994) estimator to estimate the memory
+parameter d in the ARFIMA(p,d,q) model.  It is based on the regression
+equation using the smoothed periodogram function as an estimate of the
+spectral density.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+fdSperio(x, bandw.exp = 0.5, beta = 0.9)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>univariate time series data.</p>
+</td></tr>
+<tr valign="top"><td><code>bandw.exp</code></td>
+<td>
+<p>numeric: exponent of the bandwidth used in the regression equation.</p>
+</td></tr>
+<tr valign="top"><td><code>beta</code></td>
+<td>
+<p>numeric: exponent of the bandwidth used in the lag Parzen window.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The function also provides the asymptotic standard deviation and the
+standard error deviation of the fractional estimator.
+</p>
+<p>The bandwidths are <code>bw = trunc(n ^ bandw.exp)</code>, where 0 &lt; bandw.exp &lt; 1
+and n is the sample size.  Default <code>bandw.exp= 0.5</code>;
+<br>
+and <code>bw2 = trunc(n ^ beta)</code>, where 0 &lt; beta &lt; 1 and n is the
+sample size.  Default <code>beta = 0.9</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a list with components
+</p>
+<table summary="R valueblock">
+<tr valign="top"><td><code>d</code></td>
+<td>
+<p>Sperio estimate</p>
+</td></tr>
+<tr valign="top"><td><code>sd.as</code></td>
+<td>
+<p>asymptotic standard deviation</p>
+</td></tr>
+<tr valign="top"><td><code>sd.reg</code></td>
+<td>
+<p>standard error deviation</p>
+</td></tr>
+</table>
+
+
+<h3>Author(s)</h3>
+
+<p>Valderio A. Reisen <a href="mailto:valderio@cce.ufes.br">valderio@cce.ufes.br</a> and Artur J. Lemonte</p>
+
+
+<h3>References</h3>
+
+<p>Geweke, J. and Porter-Hudak, S. (1983)
+The estimation and application of long memory time series models.
+<EM>Journal of Time Series Analysis</EM> <B>4</B>(4), 221&ndash;238.
+</p>
+<p>Reisen, V. A. (1994)
+Estimation of the fractional difference parameter in the ARFIMA(p,d,q)
+model using the smoothed periodogram.
+<EM>Journal Time Series Analysis</EM>, <B>15</B>(1), 335&ndash;350.
+</p>
+<p>Reisen, V. A., B. Abraham, and E. M. M. Toscano (2001)
+Parametric and semiparametric estimations of stationary univariate
+ARFIMA model.
+<EM>Brazilian Journal of Probability and Statistics</EM> <B>14</B>, 185&ndash;206.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="fdGPH.html">fdGPH</a></code>, <code><a href="fracdiff.html">fracdiff</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+memory.long &lt;- fracdiff.sim(1500, d = 0.3)
+spm &lt;- fdSperio(memory.long$series)
+str(spm, digits=6)
+</pre>
+
+<hr><div align="center">[Package <em>fracdiff</em> version 1.4-2 <a href="00Index.html">Index</a>]</div>
+</body></html>

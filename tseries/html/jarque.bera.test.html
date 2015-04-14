@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Jarque-Bera Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for jarque.bera.test {tseries}"><tr><td>jarque.bera.test {tseries}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Jarque&ndash;Bera Test</h2>
+
+<h3>Description</h3>
+
+<p>Tests the null of normality for <code>x</code> using the Jarque-Bera
+test statistic.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+jarque.bera.test(x)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a numeric vector or time series.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This test is a joint statistic using skewness and kurtosis
+coefficients.
+</p>
+<p>Missing values are not allowed.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list with class <code>"htest"</code> containing the following components:
+</p>
+<table summary="R valueblock">
+<tr valign="top"><td><code>statistic</code></td>
+<td>
+<p>the value of the test statistic.</p>
+</td></tr>
+<tr valign="top"><td><code>parameter</code></td>
+<td>
+<p>the degrees of freedom.</p>
+</td></tr>
+<tr valign="top"><td><code>p.value</code></td>
+<td>
+<p>the p-value of the test.</p>
+</td></tr>
+<tr valign="top"><td><code>method</code></td>
+<td>
+<p>a character string indicating what type of test was
+performed.</p>
+</td></tr> 
+<tr valign="top"><td><code>data.name</code></td>
+<td>
+<p>a character string giving the name of the data.</p>
+</td></tr>
+</table>
+
+
+<h3>Author(s)</h3>
+
+<p>A. Trapletti</p>
+
+
+<h3>References</h3>
+
+<p>J. B. Cromwell, W. C. Labys and M. Terraza (1994):
+<EM>Univariate Tests for Time Series Models</EM>,
+Sage, Thousand Oaks, CA, pages 20&ndash;22.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+x &lt;- rnorm(100)  # null
+jarque.bera.test(x)
+
+x &lt;- runif(100)  # alternative
+jarque.bera.test(x)
+</pre>
+
+<hr><div align="center">[Package <em>tseries</em> version 0.10-34 <a href="00Index.html">Index</a>]</div>
+</body></html>

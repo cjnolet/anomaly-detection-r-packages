@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: ARIMA errors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for arima.errors {forecast}"><tr><td>arima.errors {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>ARIMA errors</h2>
+
+<h3>Description</h3>
+
+<p>Returns original time series after adjusting for 
+regression variables. These are not the same as the residuals. 
+If there are no regression variables in the ARIMA model, then 
+the errors will be identical to the original series. If there 
+are regression variables in the ARIMA model, then the errors 
+will be equal to the original series minus the effect of the 
+regression variables, but leaving in the serial correlation 
+that is modelled with the AR and MA terms. If you want the 
+&quot;residuals&quot;, then use <code>residuals(z).</code>. </p>
+
+
+<h3>Usage</h3>
+
+<pre>arima.errors(z)</pre>
+
+
+<h3>Arguments</h3>
+
+ <table summary="R argblock">
+<tr valign="top"><td><code>z</code></td>
+<td>
+<p>Fitted ARIMA model from <code><a href="../../stats/html/arima.html">arima</a></code></p>
+</td></tr> </table>
+
+
+<h3>Value</h3>
+
+<p>A time series containing the &quot;errors&quot;.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../stats/html/arima.html">arima</a></code>, <code><a href="../../stats/html/residuals.html">residuals</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>
+www.fit &lt;- auto.arima(WWWusage)
+www.errors &lt;- arima.errors(www.fit)
+par(mfrow=c(2,1))
+plot(WWWusage)
+plot(www.errors)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

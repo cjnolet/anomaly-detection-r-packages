@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Confidence Intervals for Fracdiff Model Parameters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for confint.fracdiff {fracdiff}"><tr><td>confint.fracdiff {fracdiff}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Confidence Intervals for Fracdiff Model Parameters</h2>
+
+<h3>Description</h3>
+
+<p>Computes confidence intervals for  one or more parameters in a fitted
+fracdiff model, see <code><a href="fracdiff.html">fracdiff</a></code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S3 method for class 'fracdiff'
+confint(object, parm, level = 0.95, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>an object of class <code>fracdiff</code>, typically result of
+<code><a href="fracdiff.html">fracdiff</a>(..)</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>parm</code></td>
+<td>
+<p>a specification of which parameters are to be given
+confidence intervals, either a vector of numbers or a vector of
+names.  If missing, all parameters are considered.</p>
+</td></tr>
+<tr valign="top"><td><code>level</code></td>
+<td>
+<p>the confidence level required.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional argument(s) for methods.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A matrix (or vector) with columns giving lower and upper confidence
+limits for each parameter. These will be labelled as (1-level)/2 and
+1 - (1-level)/2 in % (by default 2.5% and 97.5%).
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Spencer Graves posted the initial version to R-help.</p>
+
+
+<h3>See Also</h3>
+
+<p>the generic <code><a href="../../stats/html/confint.html">confint</a></code>; <code><a href="fracdiff.html">fracdiff</a></code> model
+fitting.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+set.seed(101)
+ts2 &lt;- fracdiff.sim(5000, ar = .2, ma = -.4, d = .3)
+mFD &lt;- fracdiff( ts2$series, nar = length(ts2$ar), nma = length(ts2$ma))
+coef(mFD)
+confint(mFD)
+</pre>
+
+<hr><div align="center">[Package <em>fracdiff</em> version 1.4-2 <a href="00Index.html">Index</a>]</div>
+</body></html>

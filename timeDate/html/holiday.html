@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Holiday Dates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for holiday {timeDate}"><tr><td>holiday {timeDate}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Holiday Dates</h2>
+
+<h3>Description</h3>
+
+<p>Returns the date of a holiday. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+holiday(year = getRmetricsOptions("currentYear"), Holiday = "Easter")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>Holiday</code></td>
+<td>
+
+<p>the unquoted function name of an ecclestial or public holiday 
+in the G7 countries or Switzerland, see the list below.
+</p>
+</td></tr>
+<tr valign="top"><td><code>year</code></td>
+<td>
+
+<p>an integer value or vector of years, formatted as <code>YYYY</code>.
+</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Easter is the central ecclestial holiday. Many other holidays
+are related to this feast. The function <code>Easter</code> computes
+the dates of Easter and related ecclestial holidays for the 
+requested year vector. <code>holiday</code> calculates the dates of 
+ecclestial or publich holidays in the G7 countries, e.g. 
+<code>holiday(2003, "GoodFriday")</code>. Rmetrics contains holiday 
+functions automatically loaded at startup time. The user can 
+add easily additional holiday functions. The information for 
+the holidays is collected from several web pages about holiday 
+calendars.
+The following ecclestial and public <code>[HOLIDAY]</code> functions 
+in the G7 countries and Switzerland are available: <br>
+</p>
+<p><EM>Holidays Related to Easter:</EM> 
+</p>
+<p>Septuagesima, Quinquagesima, AshWednesday, PalmSunday,
+GoodFriday,  EasterSunday, Easter, EasterMonday, 
+RogationSunday, Ascension, Pentecost, PentecostMonday, 
+TrinitySunday CorpusChristi. <br> 
+</p>
+<p><EM>Holidays Related to Christmas:</EM> 
+</p>
+<p>ChristTheKing, Advent1st, Advent1st, Advent3rd, 
+Advent4th, ChristmasEve, ChristmasDay, BoxingDay, 
+NewYearsDay. <br>
+</p>
+<p><EM>Other Ecclestical Feasts:</EM> 
+</p>
+<p>SolemnityOfMary, Epiphany, PresentationOfLord, 
+Annunciation, TransfigurationOfLord, AssumptionOfMary, 
+AssumptionOfMary, BirthOfVirginMary, CelebrationOfHolyCross, 
+MassOfArchangels, AllSaints, AllSouls. <br>
+</p>
+<p><EM>CHZurich - Public Holidays:</EM> 
+</p>
+<p>CHBerchtoldsDay, CHSechselaeuten, CHAscension, 
+CHConfederationDay, CHKnabenschiessen. <br>
+</p>
+<p><EM>GBLondon - Public Holidays:</EM> 
+</p>
+<p>GBMayDay, GBBankHoliday, GBSummerBankHoliday, 
+GBNewYearsEve. <br>
+</p>
+<p><EM>DEFrankfurt - Public Holidays:</EM> 
+</p>
+<p>DEAscension, DECorpusChristi, DEGermanUnity, DEChristmasEve,
+DENewYearsEve. <br>
+</p>
+<p><EM>FRParis - Public Holidays:</EM> 
+</p>
+<p>FRFetDeLaVictoire1945, FRAscension, FRBastilleDay, 
+FRAssumptionVirginMary, FRAllSaints, FRArmisticeDay. <br>
+</p>
+<p><EM>ITMilano - Public Holidays:</EM> 
+</p>
+<p>ITEpiphany, ITLiberationDay, ITRepublicAnniversary, 
+ITAssumptionOfVirginMary, ITAllSaints, ITWWIVictoryAnniversary, 
+ITStAmrose, ITImmaculateConception. <br>
+</p>
+<p><EM>USNewYork/USChicago - Public Holidays:</EM> 
+</p>
+<p>USNewYearsDay, USInaugurationDay, USMLKingsBirthday, 
+USLincolnsBirthday, USWashingtonsBirthday, USMemorialDay, 
+USIndependenceDay, USLaborDay,  USColumbusDay, USElectionDay, 
+USVeteransDay, USThanksgivingDay, USChristmasDay, 
+USCPulaskisBirthday, USGoodFriday. <br> 
+</p>
+<p><EM>CAToronto/CAMontreal - Public Holidays:</EM> 
+</p>
+<p>CAVictoriaDay, CACanadaDay, CACivicProvincialHoliday, 
+CALabourDay, CAThanksgivingDay, CaRemembranceDay. <br>
+</p>
+<p><EM>JPTokyo/JPOsaka - Public Holidays:</EM> 
+</p>
+<p>JPNewYearsDay, JPGantan, JPBankHolidayJan2, JPBankHolidayJan3,
+JPComingOfAgeDay, JPSeijinNoHi, JPNatFoundationDay,
+JPKenkokuKinenNoHi, JPGreeneryDay, JPMidoriNoHi, 
+JPConstitutionDay, JPKenpouKinenBi, JPNationHoliday, 
+JPKokuminNoKyujitu, JPChildrensDay, JPKodomoNoHi, 
+JPMarineDay, JPUmiNoHi, JPRespectForTheAgedDay,
+JPKeirouNoHi, JPAutumnalEquinox, JPShuubun-no-hi, 
+JPHealthandSportsDay, JPTaiikuNoHi, JPNationalCultureDay, 
+JPBunkaNoHi, JPThanksgivingDay, JPKinrouKanshaNohi, 
+JPKinrou-kansha-no-hi, JPEmperorsBirthday,
+JPTennou-tanjyou-bi, JPTennou-tanjyou-bi. <br>
+</p>
+
+
+<h3>Value</h3>
+
+<p>The function <code>holiday</code> returns an object of class
+<code>timeDate</code>. 
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## holiday -
+   # Dates for GoodFriday from 2000 until 2010:                     
+   holiday(2000:2010, "GoodFriday")                  
+   
+## Easter -   
+   Easter(2000:2010)
+   
+## GoodFriday -                           
+   GoodFriday(2000:2010)
+   Easter(2000:2010, -2) 
+</pre>
+
+<hr><div align="center">[Package <em>timeDate</em> version 3012.100 <a href="00Index.html">Index</a>]</div>
+</body></html>

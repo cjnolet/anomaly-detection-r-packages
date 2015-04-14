@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Accuracy measures for forecast model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for accuracy {forecast}"><tr><td>accuracy {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Accuracy measures for forecast model</h2>
+
+<h3>Description</h3>
+
+<p>Returns range of summary measures of the forecast accuracy. If <code>x</code> is provided, the function measures out-of-sample (test set) forecast accuracy
+based on x-f. If <code>x</code> is not provided, the function only produces in-sample (training set) accuracy measures of the forecasts based on f[&quot;x&quot;]-fitted(f).
+All measures are defined and discussed in Hyndman and Koehler (2006).</p>
+
+
+<h3>Usage</h3>
+
+<pre>accuracy(f, x, test=NULL, d=NULL, D=NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>f</code></td>
+<td>
+<p>An object of class <code>"forecast"</code>, or a numerical vector containing forecasts. It will also work with <code>Arima</code>, <code>ets</code> and <code>lm</code> objects if <code>x</code> is omitted &ndash; in which case in-sample accuracy measures are returned.</p>
+</td></tr>
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>An optional numerical vector containing actual values of the same length as object, or a time series overlapping with the times of <code>f</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>test</code></td>
+<td>
+<p>Indicator of which elements of x and f to test. If <code>test</code> is <code>NULL</code>, all elements are used. Otherwise test is a numeric vector containing the indices of the elements to use in the test.</p>
+</td></tr>
+<tr valign="top"><td><code>d</code></td>
+<td>
+<p>An integer indicating the number of lag-1 differences to be used for the denominator in MASE calculation. Default value is 1 for non-seasonal series and 0 for seasonal series.</p>
+</td></tr>
+<tr valign="top"><td><code>D</code></td>
+<td>
+<p>An integer indicating the number of seasonal differences to be used for the denominator in MASE calculation. Default value is 0 for non-seasonal series and 1 for seasonal series.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The measures calculated are:
+</p>
+
+<ul>
+<li><p> ME: Mean Error
+</p>
+</li>
+<li><p> RMSE: Root Mean Absolute Error
+</p>
+</li>
+<li><p> MAE: Mean Absolute Error
+</p>
+</li>
+<li><p> MPE: Mean Percentage Error
+</p>
+</li>
+<li><p> MAPE: Mean Absolute Percentage Error
+</p>
+</li>
+<li><p> MASE: Mean Absolute Scaled Error
+</p>
+</li>
+<li><p> ACF1: Autocorrelation of errors at lag 1.
+</p>
+</li></ul>
+
+<p>By default, the MASE calculation is scaled using MAE of in-sample naive forecasts for non-seasonal time series, in-sample seasonal naive forecasts for seasonal time series and in-sample mean forecasts for non-time series data.
+</p>
+<p>See Hyndman and Koehler (2006) and Hyndman and Athanasopoulos (2014, Section 2.5) for further details.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Matrix giving forecast accuracy measures.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>References</h3>
+
+<p>Hyndman, R.J. and Koehler, A.B. (2006) &quot;Another look at measures of forecast accuracy&quot;. <EM>International Journal of Forecasting</EM>, <B>22</B>(4), 679-688.
+Hyndman, R.J. and Athanasopoulos, G. (2014) &quot;Forecasting: principles and practice&quot;, OTexts. Section 2.5 &quot;Evaluating forecast accuracy&quot;. <a href="http://www.otexts.org/fpp/2/5">http://www.otexts.org/fpp/2/5</a>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+fit1 &lt;- rwf(EuStockMarkets[1:200,1],h=100)
+fit2 &lt;- meanf(EuStockMarkets[1:200,1],h=100)
+accuracy(fit1)
+accuracy(fit2)
+accuracy(fit1,EuStockMarkets[201:300,1])
+accuracy(fit2,EuStockMarkets[201:300,1])
+plot(fit1)
+lines(EuStockMarkets[1:300,1])
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

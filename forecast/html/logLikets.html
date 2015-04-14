@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Log-Likelihood of an ets object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for logLik.ets {forecast}"><tr><td>logLik.ets {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Log-Likelihood of an ets object</h2>
+
+<h3>Description</h3>
+
+<p>Returns the log-likelihood of the ets model represented by <code>object</code> evaluated at the estimated parameters.</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S3 method for class 'ets'
+logLik(object, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>an object of class <code>ets</code>, representing an exponential smoothing state space model.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>some methods for this generic require additional arguments. None are used in this method.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>the log-likelihood of the model represented by <code>object</code> evaluated at the estimated parameters.</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>References</h3>
+
+<p>Hyndman, R.J., Koehler, A.B., Ord, J.K., and Snyder, R.D. (2008)
+<EM>Forecasting with exponential smoothing: the state space approach</EM>,
+Springer-Verlag. <a href="http://www.exponentialsmoothing.net">http://www.exponentialsmoothing.net</a>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="ets.html">ets</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>fit &lt;- ets(USAccDeaths)
+logLik(fit)
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>

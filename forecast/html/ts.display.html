@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Time series display</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for tsdisplay {forecast}"><tr><td>tsdisplay {forecast}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Time series display</h2>
+
+<h3>Description</h3>
+
+<p>Plots a time series along with its acf and either its pacf, lagged scatterplot or spectrum.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>tsdisplay(x, plot.type=c("partial","scatter","spectrum"), points=TRUE, ci.type="white", 
+    lag.max, na.action=na.contiguous, 
+    main=NULL, ylab="", xlab="", pch=1, cex=0.5, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+  <table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a numeric vector or time series.</p>
+</td></tr>
+<tr valign="top"><td><code>plot.type</code></td>
+<td>
+<p>type of plot to include in lower right corner.</p>
+</td></tr>
+<tr valign="top"><td><code>points</code></td>
+<td>
+<p>logical flag indicating whether to show the individual points or not in the time plot.</p>
+</td></tr>
+<tr valign="top"><td><code>ci.type</code></td>
+<td>
+<p>type of confidence limits for ACF. Possible values are as for <code><a href="../../stats/html/acf.html">acf</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>lag.max</code></td>
+<td>
+<p>the maximum lag to plot for the acf and pacf. A suitable value is selected by default if the argument is missing.</p>
+</td></tr>
+<tr valign="top"><td><code>na.action</code></td>
+<td>
+<p>function to handle missing values in acf, pacf and spectrum calculations. The default is <code><a href="../../stats/html/na.contiguous.html">na.contiguous</a></code>. Useful alternatives are <code><a href="../../stats/html/na.pass.html">na.pass</a></code> and <code><a href="na.interp.html">na.interp</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>main</code></td>
+<td>
+<p>Main title.</p>
+</td></tr>
+<tr valign="top"><td><code>ylab</code></td>
+<td>
+<p>Y-axis label</p>
+</td></tr>
+<tr valign="top"><td><code>xlab</code></td>
+<td>
+<p>X-axis label</p>
+</td></tr>
+<tr valign="top"><td><code>pch</code></td>
+<td>
+<p>Plotting character</p>
+</td></tr>
+<tr valign="top"><td><code>cex</code></td>
+<td>
+<p>Character size</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional arguments to <code><a href="../../stats/html/acf.html">acf</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>  None.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Rob J Hyndman</p>
+
+
+<h3>References</h3>
+
+<p>Hyndman and Athanasopoulos (2014) <EM>Forecasting: principles and practice</EM>, OTexts: Melbourne, Australia. <a href="http://www.otexts.org/fpp/">http://www.otexts.org/fpp/</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../stats/html/plot.ts.html">plot.ts</a></code>, <code><a href="Acf.html">Acf</a></code>, <code><a href="../../stats/html/spec.ar.html">spec.ar</a></code></p>
+
+
+<h3>Examples</h3>
+
+<pre>tsdisplay(diff(WWWusage))
+</pre>
+
+<hr><div align="center">[Package <em>forecast</em> version 5.9 <a href="00Index.html">Index</a>]</div>
+</body></html>
